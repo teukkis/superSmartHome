@@ -1,0 +1,17 @@
+{
+  "name": "broker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "aedes": "^0.46.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.14"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"  },
+  "author": "",
+  "license": "ISC"
+}
