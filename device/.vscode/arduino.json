@@ -1,6 +1,0 @@
-{
-    "board": "arduino:samd:mkrwifi1010",
-    "programmer": "arduino:atmel_ice",
-    "port": "/dev/ttyACM0",
-    "sketch": "mkr1010/mkr1010.ino"
-}
