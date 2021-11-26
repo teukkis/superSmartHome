@@ -1,8 +1,9 @@
 const mqtt = require('mqtt')
+const { conf } = require('./conf')
 const publisher = {}
 
 publisher.connect = () => {
-  publisher.client = mqtt.connect("mqtt://localhost:1883")
+  publisher.client = mqtt.connect(conf.serviceBrokerAddress)
 
   publisher.client.on('connect', () => {
     console.log("connected")
@@ -13,10 +14,14 @@ publisher.connect = () => {
   })
 }
 
-publisher.send = send = (doc) => {
-  publisher.client.publish('test', "test" , (error) => {
-    console.log(error)
+publisher.send = send = (topic, doc) => {
+  console.log(doc)
+  publisher.client.publish(topic, JSON.stringify(doc) , (error) => {
+    if(error) console.log(error)
   })
 }
 
-module.exports = publisher
+
+module.exports = {
+  publisher
+}
