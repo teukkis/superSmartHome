@@ -15,7 +15,6 @@ publisher.connect = () => {
 }
 
 publisher.send = send = (topic, doc) => {
-  console.log(doc)
   publisher.client.publish(topic, JSON.stringify(doc) , (error) => {
     if(error) console.log(error)
   })

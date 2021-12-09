@@ -5,7 +5,7 @@
 #include "arduino_secrets.h"
 
 
-void setupWifi() {
+bool setupWifi() {
   int status = WL_IDLE_STATUS;
 
   if (WiFi.status() == WL_NO_MODULE) {
@@ -14,7 +14,6 @@ void setupWifi() {
   }
 
   String firmware_version = WiFi.firmwareVersion();
-  checkFirmawareVersion(firmware_version);
   
   while (status != WL_CONNECTED) {
     Serial.print("Attempting to connect to WPA SSID: ");
@@ -26,6 +25,8 @@ void setupWifi() {
   Serial.print("You're connected to the network");
   printCurrentNet();
   printWifiData();
+
+  return true;
 }
 
 void printWifiData() {
@@ -70,12 +71,3 @@ void printMacAddress(byte mac[]) {
   Serial.println();
 }
 
-void checkFirmawareVersion(String firmware_version) {
-  if (firmware_version < WIFI_FIRMWARE_LATEST_VERSION) {
-    Serial.println("Please upgrade the firmware");
-    Serial.print("Current is: ");
-    Serial.println(firmware_version);
-    Serial.print("The latest is: ");
-    Serial.println(WIFI_FIRMWARE_LATEST_VERSION);
-  }
-}

@@ -1,4 +1,5 @@
 const mqtt = require('mqtt')
+const { processPhotoResistorValue } = require('./processing')
 
 const subscriber = {}
 
@@ -7,20 +8,18 @@ subscriber.connect = () => {
   subscriber.client.on('connect', () => {
 
     subscriber.client.subscribe('test_mqtt')
-    subscriber.client.subscribe('sunSetSunDownInfo')
+    subscriber.client.subscribe('PHOTORESISTOR_TOPIC')
     
     subscriber.client.on('message', (topic, message) => {
 
       switch (topic) {
         case 'test_mqtt':
-          console.log("tilaa testi mqtt")
           break
-        case 'sunSetSunDownInfo':
-          console.log('sunSetSunDownInfo tilaajassa')
+        case 'PHOTORESISTOR_TOPIC':
+          processPhotoResistorValue(JSON.parse(message.toString()))
         default:
           break
       }
-      
     })
   })
 

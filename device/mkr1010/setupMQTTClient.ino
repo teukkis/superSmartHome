@@ -22,9 +22,9 @@ void setupMQTT(MqttClient mqttClient) {
 
 void initSubscriptions(MqttClient mqttClient) {
 
-  // Subscribe for weather data
-  mqttClient.subscribe(WEATHER_TOPIC);
+  // Subscribe for sunset sundown data
+  mqttClient.subscribe(SUNSET_SUNDOWN_TOPIC);
   Serial.print("Waiting for messages on topic: ");
-  Serial.println(WEATHER_TOPIC);
+  Serial.println(SUNSET_SUNDOWN_TOPIC);
   Serial.println();
 }

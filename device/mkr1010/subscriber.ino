@@ -1,7 +1,9 @@
 #include <ArduinoMqttClient.h>
 
-bool subscribeTopics(MqttClient mqttClient, char weather_topic[]) {
+bool subscribeTopics(MqttClient mqttClient, char sunset_sundown_topic[]) {
+
   int messageSize = mqttClient.parseMessage();
+  
   if (messageSize) {
     // print out the topic and contents
     Serial.print("Received a message with topic '");

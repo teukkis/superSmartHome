@@ -14,23 +14,33 @@ MqttClient mqttClient(wifiClient);
 
 void setup() {
   
+  // initialize the serial port
   Serial.begin(9600);
   while (!Serial) delay(100);
 
-  void setupWifi();
+  // Connect wifi module to network
+  bool wifiIsConnected = setupWifi();
 
-  setupMQTT(mqttClient);
-  initSubscriptions(mqttClient);
+  // Connect MQTT client to service broker
+  if (wifiIsConnected) {
+    setupMQTT(mqttClient);
+    initSubscriptions(mqttClient);
+  }
 }
 
 void loop() {
-  mqttClient.poll(); // poll broker to prevent getting disconnected
 
-  // read and send photoresistor values
+  // Poll broker to prevent getting disconnected
+  mqttClient.poll(); 
+
+  // read photoresistor values
   int photoResistorValue = readPhotoResistor();
+
+  // Send the value to service broker
   publishphotoResistorValue(mqttClient, photoResistorValue, PHOTORESISTOR_TOPIC);
 
-  bool closeBlindsBoolean = subscribeTopics(mqttClient, WEATHER_TOPIC);
+  // Receive a command to switch the state of blinds
+  bool closeBlindsBoolean = subscribeTopics(mqttClient, SUNSET_SUNDOWN_TOPIC);
 
   if (closeBlindsBoolean) {
     closeBlinds();
@@ -39,5 +49,6 @@ void loop() {
     openBlinds();
   }
 
-  delay(10000);
+  delay(5000);
+
 }

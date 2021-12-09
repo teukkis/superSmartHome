@@ -2,7 +2,10 @@
 
 
 int readPhotoResistor() {
-  return 1;
+  int value = analogRead(A1);
+  Serial.println("Analog Value :");
+  Serial.println(value);
+  return value;
 }
 
 void publishphotoResistorValue(MqttClient client, int value, char topic[] ) {

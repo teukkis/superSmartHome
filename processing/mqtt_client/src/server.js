@@ -5,7 +5,6 @@ const { sunSetSunDownLoop } = require('./processing')
 const { conf } = require('./conf')
 const app = {}
 
-//connect to mongoDB
 //start listening incoming messages
 app.init = init = async () => {
     subscriber.connect()

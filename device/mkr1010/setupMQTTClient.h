@@ -5,7 +5,7 @@
 
 void setupMQTT(MqttClient mqttClient);
 void initSubscriptions(MqttClient mqttClient);
-bool subscribeTopics(MqttClient mqttClient, char weather_topic[]);
+bool subscribeTopics(MqttClient mqttClient, char sunset_sundown_topic[]);
 
 
 #endif

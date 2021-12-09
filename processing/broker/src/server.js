@@ -11,7 +11,7 @@ aedes.on('clientReady', (client) => {
 })
 
 aedes.on('clientDisconnect', (client) => {
-  console.log(client, "disconnected")
+  console.log(client.id, "disconnected")
 })
 
 aedes.on('subscribe', function (subscriptions, client) {

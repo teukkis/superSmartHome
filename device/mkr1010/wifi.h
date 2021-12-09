@@ -1,10 +1,9 @@
-#ifndef HELPERS
-#define HELPERS
+#ifndef WIFI
+#define WIFI
 
-void setupWifi();
+bool setupWifi();
 void printWifiData();
 void printCurrentNet();
 void printMacAddress();
-void checkFirmawareVersion(String firmware_version);
 
 #endif
